@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Space Cadet</title>
+    <script type="text/javascript" src="spacecadet.js"></script>
+    <script type="text/javascript">
+      SpaceCadet.prototype.lorenz = function(image) {
+        var x0 = Math.random(10)/10;
+        var y0 = Math.random(20);
+        var z0 = Math.random(10);
+        var h = 0.01;
+        //Strange Attractor 
+        var sig = 10.0;
+        var tau = 28.0;
+        var beta = 8.0 / 3.0;
+        var x, y, z, x1, y1, z1;
+        for (var n=0; n<600; n++) {
+          x1 = x0+h * sig*(y0-x0);
+          y1 = y0+h * (x0*(tau-z0)-y0);
+          z1 = z0+h * (x0*y0-beta*z0);
+          x = x0*10+210;
+          y = y0*10+210;
+          image(x, y);
+          x0 = x1;
+          y0 = y1;
+          z0 = z1;
+        }
+      }
+      
+      window.onload = function() {
+        var t = new SpaceCadet("Canvas");
+        t.lorenz(function(x,y) {
+          t.drawCircle(x,y,10,'rgba(0,0,0,0.2)');
+        });
+      };
+    </script>
+  </head>
+  <body>
+  <div id="Frame">
+    <canvas id="Canvas" width="800" height="500">
+    </canvas>
+  </div> <!--End #Frame Div-->
+</body>
+</html>

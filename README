@@ -1,0 +1,106 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#  spacecadet.js v.1
+#  - A tiny framework for drawing computer generated images. 
+#
+#  unlicensed
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+
+          TABLE OF CONTENTS
+---------------------------------------------------------------------
+I.    Overview
+
+II.   Usage
+
+III.  API
+
+IV.   Todo
+
+V.    Contributers/Contributing
+
+
+
+I.         OVERVIEW
+---------------------------------------------------------------------
+spacecadet.js is a tiny framework for drawing computer generated
+images.
+
+See USAGE and example.htm for my details. 
+
+
+
+II.        USAGE
+---------------------------------------------------------------------
+<script type="text/javascript" src="spacecadet.js"></script>
+<script type="text/javascript">
+  var cadet = new SpaceCadet("Canvas"); // "Canvas" is the ID to your
+                                        //  canvas DOM element.
+  
+  /* This example draws 10 circles in a row.
+   * For a more elaborate example, see example.htm
+   */
+  
+  /* Create a new prototype for SpaceCadet, in this case we call
+   * it 'row'. It takes a function, conventially named 'image' that 
+   * simply acts as a static image that we manipulate.
+   */ 
+  SpaceCadet.prototype.row = function(image) {
+    for(var i = 0; i < 100; i+=10)
+      image(i,10);
+  };
+
+  /* Call 'row' with an anon. function, in this case we 
+   * just call a circle. However, it's possible to draw complex 
+   * images that can repeated over in our 'row' function. Try adding 
+   * a triangle or rectangle. See API for more options.
+   */ 
+  t.row(function(x,y) {
+    t.drawCircle(x,y,10,'rgba(0,0,0,0.2)');
+  });
+</script>
+
+SEE example.htm for an example of Lorenz butterfly
+
+
+
+III.      API
+---------------------------------------------------------------------
+
+Draw Isosceles (or Equilateral) triangle
+- x,y : coordinates (centroid)
+- w,h : dimensions (width,height)
+- r   : rotate (radians)
+- c   : color
+drawIsoTriangle(x,y,w,h,r,c);
+
+Draw Circle
+- x,y : coordinates
+- r   : radius
+- c   : color 
+drawCircle(x,y,r,c);
+
+Draw Rectangle
+- x,y : coordinates
+- w,h : dimensions (width,height)
+- c   : color 
+drawRectangle(x,y,w,h,c);
+
+Clear Canvas
+clear();
+
+
+
+III.      TODO
+---------------------------------------------------------------------
+- Add more examples.
+- API a bit puny...
+
+
+
+IV.       Contributers/Contributing
+---------------------------------------------------------------------
+spacecadet.js is developed by aef (aef@catch-colt.com).
+Originally developed on Oct 10 2010.
+
+To contribute visit http://github.com/aef-/spacecadet.js.
